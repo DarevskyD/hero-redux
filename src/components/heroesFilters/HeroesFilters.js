@@ -1,5 +1,4 @@
 // Задача для этого компонента:
-// Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
 // Активный фильтр имеет класс active
 
@@ -11,15 +10,15 @@ import {
   filtersFetching,
   filtersFetched,
   filtersFetchingError,
+	activeFilterChanged 
 } from "../../actions";
 import Spinner from "../spinner/Spinner";
 
 const HeroesFilters = () => {
-  const { filters, filtersLoadingStatus, activeFilter } = useSelector(
-    (state) => state
-  );
+  const { filters, filtersLoadingStatus, activeFilter } =
+    useSelector((state) => state);
   const dispatch = useDispatch();
-  const { request } = useHttp();
+  const { request } = useHttp();  
 
   useEffect(() => {
     dispatch(filtersFetching());
@@ -42,10 +41,15 @@ const HeroesFilters = () => {
 
     return arr.map(({ name, className, label }) => {
       const btnClass = classNames("btn", className, {
-        active: name === activeFilter,
+        'active': name === activeFilter,
       });
       return (
-        <button key={name} id={name} className={btnClass}>
+        <button
+          key={name}
+          id={name}
+          className={btnClass}
+          onClick={() => dispatch(activeFilterChanged(name))}
+        >
           {label}
         </button>
       );
