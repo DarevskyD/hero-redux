@@ -35,9 +35,9 @@ const HeroesAddForm = () => {
 
   const renderFilters = (filters, status) => {
     if (status === "loading") {
-      return <option>Загрузка фильтров</option>;
+      return <option>Loading filters</option>;
     } else if (status === "error") {
-      return <option>Ошибка загрузки фильтров</option>;
+      return <option>Error loading filters</option>;
     }
 
     if (filters && filters.length > 0) {
@@ -65,7 +65,7 @@ const HeroesAddForm = () => {
           name="name"
           className="form-control"
           id="name"
-          placeholder="Как меня зовут?"
+          placeholder="My name is?"
           value={heroName}
           onChange={(e) => setHeroName(e.target.value)}
         />
@@ -73,23 +73,22 @@ const HeroesAddForm = () => {
 
       <div className="mb-3">
         <label htmlFor="text" className="form-label fs-4">
-          Описание
+          Description:
         </label>
         <textarea
           required
           name="text"
           className="form-control"
           id="text"
-          placeholder="Что я умею?"
+          placeholder="What I can do?"
           value={heroDescription}
           onChange={(e) => setHeroDescription(e.target.value)}
           style={{ height: "130px" }}
         />
       </div>
-
       <div className="mb-3">
         <label htmlFor="element" className="form-label">
-          Выбрать элемент героя
+          Select the hero element:
         </label>
         <select
           required
@@ -99,13 +98,13 @@ const HeroesAddForm = () => {
           value={heroElement}
           onChange={(e) => setHeroElement(e.target.value)}
         >
-          <option value="">Я владею элементом...</option>
+          <option value="">I own the element...</option>
           {renderFilters(filters, filtersLoadingStatus)}
         </select>
       </div>
 
       <button type="submit" className="btn btn-primary">
-        Создать
+        Create
       </button>
     </form>
   );

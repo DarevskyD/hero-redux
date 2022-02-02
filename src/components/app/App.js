@@ -9,7 +9,7 @@ const App = () => {
     <main className="app">
       <div className="content">
         <HeroesList />
-        <div className="content__interactive">
+        <div className="content__form">
           <HeroesAddForm />
           <HeroesFilters />
         </div>

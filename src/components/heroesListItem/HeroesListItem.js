@@ -1,48 +1,54 @@
 const HeroesListItem = ({ name, description, element, onDelete }) => {
   let elementClassName;
+  let elementUrl;
 
   switch (element) {
     case "fire":
-      elementClassName = "bg-danger bg-gradient";
+      elementClassName = "danger";
+      elementUrl = "d339b90f-5a89-4e42-aaa5-839140233df7";
       break;
     case "water":
-      elementClassName = "bg-primary bg-gradient";
+      elementClassName = "primary";
+      elementUrl = "d4a4de9c-8164-4c8c-8a6d-a639819997b2";
       break;
     case "wind":
-      elementClassName = "bg-success bg-gradient";
+      elementClassName = "info";
+      elementUrl = "4a784718-903b-47b0-9ff7-fe6e07abfdba";
       break;
     case "earth":
-      elementClassName = "bg-secondary bg-gradient";
+      elementClassName = "secondary";
+      elementUrl = "f33b6015-6091-465a-9187-d994dfc8c655";
       break;
     default:
-      elementClassName = "bg-warning bg-gradient";
+      elementClassName = "warning";
   }
 
+  const descr =
+    description.length < 40
+      ? description
+      : description.length > 40
+      ? `${description.slice(0, 40)}...`
+      : null;
+
   return (
-    <li
-      className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}
+    <div
+      className={`card rounded mb-4 shadow text-white bg-${elementClassName} border-${elementClassName}`}
+      style={{ width: "11rem", height: "20rem" }}
     >
       <img
-        src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg"
-        className="img-fluid w-25 d-inline"
+        src={`https://astro24.ru/Content/NewsImages/ContentImages/${elementUrl}.png`}
+        className="card-img-top"
         alt="unknown hero"
-        style={{ objectFit: "cover" }}
       />
+
       <div className="card-body">
         <h3 className="card-title">{name}</h3>
-        <p className="card-text">{description}</p>
+        <p className="card-text">{descr}</p>
       </div>
-      <span
-        onClick={onDelete}
-        className="position-absolute top-0 start-100 translate-middle badge-pill border rounded-pill bg-light"
-      >
-        <button
-          type="button"
-          className="btn-close btn-close"
-          aria-label="Close"
-        ></button>
+      <span onClick={onDelete} className="position-absolute top-15 end-0">
+        <button type="button" className="btn-close"></button>
       </span>
-    </li>
+    </div>
   );
 };
 
