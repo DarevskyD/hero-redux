@@ -1,3 +1,17 @@
+export const fetchHeroes = (request) => (dispatch) => {
+  dispatch(heroesFetching());
+  request("http://localhost:3001/heroes")
+    .then((data) => dispatch(heroesFetched(data)))
+    .catch(() => dispatch(heroesFetchingError()));
+};
+
+export const fetchFilters = (request) => (dispatch) => {
+  dispatch(filtersFetching());
+  request("http://localhost:3001/filters")
+    .then((data) => dispatch(filtersFetched(data)))
+    .catch(() => dispatch(filtersFetchingError()));
+}
+
 export const heroesFetching = () => {
   return {
     type: "HEROES_FETCHING",
@@ -42,6 +56,16 @@ export const activeFilterChanged = (name) => {
     payload: name,
   };
 };
+
+// --------work with redux-thunk(setTimeout for filter buttons)
+// export const activeFilterChanged = (name) => (dispatch) => {
+//   setTimeout(() => {
+//     dispatch({
+//       type: "ACTIVE_FILTER_CHANGED",
+//       payload: name,
+//     });
+//   }, 1000);
+// };
 
 export const createHero = (hero) => {
   return {
