@@ -1,18 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useHttp } from "../../hooks/http.hook";
-import { useDispatch } from "react-redux";
-import { createHero } from "../../actions";
+import { createHero } from "../heroesList/heroesSlice";
 
 const HeroesAddForm = () => {
-  const { filters, filtersLoadingStatus } = useSelector((state) => state.filters);
-  const dispatch = useDispatch();
-  const { request } = useHttp();
 
   const [heroName, setHeroName] = useState("");
   const [heroDescription, setHeroDescription] = useState("");
   const [heroElement, setHeroElement] = useState("");
+  
+  const { filters, filtersLoadingStatus } = useSelector(
+    (state) => state.filters
+  );
+  const dispatch = useDispatch();
+  const { request } = useHttp();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
