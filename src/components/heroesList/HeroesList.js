@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import {
-  // heroesFetching,
-  // heroesFetched,
-  // heroesFetchingError,
   fetchHeroes,
   heroDelete,
 } from "../../actions";
@@ -33,15 +30,7 @@ const HeroesList = () => {
   const { request } = useHttp();
 
   useEffect(() => {
-    //dispatch(heroesFetching) - middleware redux-thunk
-
-    // dispatch(heroesFetching());
-    // request("http://localhost:3001/heroes")
-    //   .then((data) => dispatch(heroesFetched(data)))
-    //   .catch(() => dispatch(heroesFetchingError()));
-
-    dispatch(fetchHeroes(request));    
-
+    dispatch(fetchHeroes(request));
     // eslint-disable-next-line
   }, []);
 

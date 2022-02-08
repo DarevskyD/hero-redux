@@ -57,16 +57,6 @@ export const activeFilterChanged = (name) => {
   };
 };
 
-// --------work with redux-thunk(setTimeout for filter buttons)
-// export const activeFilterChanged = (name) => (dispatch) => {
-//   setTimeout(() => {
-//     dispatch({
-//       type: "ACTIVE_FILTER_CHANGED",
-//       payload: name,
-//     });
-//   }, 1000);
-// };
-
 export const createHero = (hero) => {
   return {
     type: "CREATE_HERO",
