@@ -15,7 +15,8 @@ form {
 }
 
 .content {
-    display: flex;              
+    display: flex;
+    justify-content: space-between;             
     max-width: 1040px;
     margin: 0 auto;
     padding: 25px 0;
