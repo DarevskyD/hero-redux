@@ -3,16 +3,15 @@ import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import {heroDelete, fetchHeroes} from "./heroesSlice";
+import { heroDelete, fetchHeroes, selectAll } from "./heroesSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 import "./heroesList.scss";
 
 const HeroesList = () => {
-  
   const filteredHeroesSelector = createSelector(
     (state) => state.filters.activeFilter,
-    (state) => state.heroes.heroes,
+    selectAll,
     (filters, heroes) => {
       if (filters === "all") {
         return heroes;
@@ -23,7 +22,9 @@ const HeroesList = () => {
   );
 
   const filteredHeroes = useSelector(filteredHeroesSelector);
-  const heroesLoadingStatus = useSelector((state) => state.heroes.heroesLoadingStatus);
+  const heroesLoadingStatus = useSelector(
+    (state) => state.heroes.heroesLoadingStatus
+  );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
