@@ -20,9 +20,9 @@
     "uuid": "^8.3.2"
   },
   "scripts": {    
-    "start": "node react-scripts start",
-    "build": "node react-scripts build",
-    "test": "node react-scripts test",    
+    "start": "node react-scripts/start.js",
+    "build": "node react-scripts/build.js",
+    "test": "node react-scripts/test.js",    
     "server": "node server.js",
     "json-server": "json-server --watch public/heroes.json --port=3001"
   },
